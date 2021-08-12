@@ -2,7 +2,61 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div id="sandbox-container" class="text-center">
+
+
+    <!--<form action="">-->
+    @*<label for="From">From:</label>
+        <input id="datepicker" width="276" />*@
+
+    <!--<label for="To">To:</label>
+        <input id="datepicker" width="276" />
+
+        <div class="form-group">
+            <select class="form-control" id="exampleFormControlSelect1">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div>
+        <input type="submit">
+
+    </form>-->
+
+    <div class="book-now-pg">
+        <form>
+            <div class="card">
+                <div class="row p-5 ">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label class="float-left" for="From">Check-in:</label>
+                            <input id="datepicker" width="276" />
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label class="float-left" for="To">Check-out:</label>
+                            <input id="datepicker1" width="276" />
+                        </div>
+                    </div>
+                    <div class="col-4 p-t-32">
+                        <button type="button" class="btn btn-primary font-weight-bold">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
 </div>
+
+<script>
+    $('#datepicker').datepicker({
+        uiLibrary: 'bootstrap4'
+    });
+
+    $('#datepicker1').datepicker({
+        uiLibrary: 'bootstrap4'
+    });
+</script>

@@ -1,0 +1,55 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HotelNorthernBreeze</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/main.css" />
+</head>
+<body>
+    <div class="signup-card">
+        <form action="" style="border:1px solid #ccc">
+            <div class="card p-5">
+                <h1>Sign Up</h1>
+                <p>Please fill in this form to create an account.</p>
+                <hr>
+
+                <input type="text" placeholder="First Name" name="firstName" required>
+
+                <input type="text" placeholder="Last Name" name="lastName" required>
+
+                <input type="text" placeholder="Email" name="email" required>
+
+                <input type="text" placeholder="NIC" name="nic" required>
+
+                <input type="text" placeholder="telephone" name="telephone" required>
+
+                <input type="password" placeholder="Password" name="psw" required>
+
+                <input type="password" placeholder="Confirm Password" name="psw-repeat" required>
+
+                <div class="clearfix d-flex">
+                    <button type="button" class="btn btn-secondary font-weight-bold py-2 mr-2 w-50">Cancel</button>
+                    <button type="submit" class="btn btn-primary font-weight-bold py-2 w-50">Sign Up</button>
+                </div>
+                <p class="text-center mt-4">
+                    <span class="light">
+                        Already have login and password?
+                        <a href="">Sign in</a>
+                    </span>
+                </p>
+            </div>
+        </form>
+        </div>
+</body>
+</html>
+
+

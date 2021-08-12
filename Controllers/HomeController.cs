@@ -22,11 +22,36 @@ namespace HotelNorthernBreeze.Controllers
         {
             return View();
         }
-
-        public IActionResult Privacy()
+                 
+        public IActionResult BookingHistory()
+        {
+            return View();
+        }       
+        public IActionResult MyBookings()
         {
             return View();
         }
+
+        public IActionResult Booking()
+        {
+            return View();
+        }
+
+
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+        public IActionResult Signup()
+        {
+            return View();
+        }
+
+
+
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

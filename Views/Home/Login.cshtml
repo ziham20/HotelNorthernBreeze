@@ -1,0 +1,36 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HotelNorthernBreeze</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/main.css" />
+</head>
+<body>
+    <div class="login-card">
+        <form action="" method="post">
+            <div class="card p-5">
+                <h3>Hotel Northern Breeze</h3>
+                <input type="text" placeholder="Username" name="uname" required>
+                <input type="password" placeholder="Password" name="psw" required>
+
+                <button class="btn btn-primary font-weight-bold py-2" type="submit">Login</button>
+
+                <p class="mt-4">
+                    Don't have an account yet?
+                    <a data-qa-selector="register_link" href="">Register now</a>
+                </p>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>
