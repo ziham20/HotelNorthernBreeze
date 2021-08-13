@@ -1,4 +1,5 @@
-﻿using HotelNorthernBreeze.Models;
+﻿using HotelNorthernBreeze.Data;
+using HotelNorthernBreeze.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,10 +13,12 @@ namespace HotelNorthernBreeze.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly NBEDBContext _NBEDBContext;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, NBEDBContext nBEDBContext)
         {
             _logger = logger;
+            _NBEDBContext = nBEDBContext;
         }
 
         public IActionResult Index()
@@ -29,7 +32,7 @@ namespace HotelNorthernBreeze.Controllers
         }       
         public IActionResult MyBookings()
         {
-            return View();
+            return View(_NBEDBContext.Bookings.ToList());
         }
 
         public IActionResult Booking()
