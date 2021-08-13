@@ -4,31 +4,16 @@
 @{
 }
 
-
-<label>Room Size :</label>
-<select class="form-control" id="exampleFormControlSelect1">
-    <option>Single</option>
-    <option>Double</option>
-    <option>Triple family</option>
-</select>
-<label>Room Category :</label>
-<select class="form-control" id="exampleFormControlSelect1">
-    <option>Standard</option>
-    <option>Deluxe</option>
-    <option>Executive suite</option>
-    <option>Royal suite</option>
-</select>
-<br />
-
-<label>Number of nights: </label>
-<input type="type" name="name" value="6" />
-<br />
-
-<span>25% Discount Applied</span>
-<br />
-<label>Total :</label>
-
-<span>$234.00</span>
-
-
-<button>Reserve</button>
+<div class="book-now-pg">
+    <form>
+        <div class="card p-5">
+            <label>Number of nights : <span>6</span></label>       
+            <span>25% Discount Applied</span>
+            <label>Total : <span>$234.00</span></label>           
+            <div class="clearfix d-flex">
+                <button type="button" class="btn btn-secondary font-weight-bold py-2 mr-2 w-50">Cancel</button>
+                <button class="btn btn-primary font-weight-bold w-50">Book Now</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -169,8 +169,10 @@ form {
     margin: 10rem 2rem;
 }
 
-.login-card {
-    margin: 16rem 45rem;
+.login-card .card{
+    width: 500px;
+    margin: auto;
+    top: 185px;
 }
 
     .login-card h3 {
@@ -193,6 +195,16 @@ form {
         text-align: center;
     }
 
-.signup-card {
-    margin: 4rem 40rem;
+.signup-card .card{
+    width: 550px;
+    margin: auto;
+    top: 50px;
 }
+
+.booking-list-card{
+    top:50px;
+}
+
+    .booking-list-card h3 {
+        color: #386ca5;
+    }
