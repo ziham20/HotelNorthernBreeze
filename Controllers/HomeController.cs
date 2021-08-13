@@ -1,6 +1,7 @@
 ﻿using HotelNorthernBreeze.Data;
 using HotelNorthernBreeze.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -25,14 +26,14 @@ namespace HotelNorthernBreeze.Controllers
         {
             return View();
         }
-                 
+
         public IActionResult BookingHistory()
         {
             return View();
-        }       
+        }
         public IActionResult MyBookings()
         {
-            return View(_NBEDBContext.Bookings.ToList());
+            return View(_NBEDBContext.Bookings.Include(b => b.Room).ToList());
         }
 
         public IActionResult Booking()
