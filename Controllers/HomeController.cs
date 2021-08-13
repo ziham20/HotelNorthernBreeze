@@ -39,17 +39,6 @@ namespace HotelNorthernBreeze.Controllers
 
 
 
-        public IActionResult Login()
-        {
-            return View();
-        }
-        public IActionResult Signup()
-        {
-            return View();
-        }
-
-
-
 
 
 
