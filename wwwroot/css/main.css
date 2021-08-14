@@ -208,3 +208,12 @@ form {
     .booking-list-card h3 {
         color: #386ca5;
     }
+
+.home-pg {
+    position: absolute;
+    width: 63%;
+    height: 100vh;
+    top: 0;
+    display: flex;
+    align-items: center;
+}
