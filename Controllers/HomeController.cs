@@ -36,11 +36,39 @@ namespace HotelNorthernBreeze.Controllers
         }
 
 
+        // POST : /home/createbooking
         [HttpPost]
         public IActionResult CreateBooking(Booking booking)
         {
-            return null;
+
+            // get bookings of the given room type and size
+            // start date should be greater than ending dates and less than ending dates of other bookings
+            // or end date should be less than starting dates and greater than starting dates of other bookings
+
+            // get the number of rooms booked in the given period
+            var bookedRoomsCount = _context.Bookings.Count(
+                b => b.Size == booking.Size && b.Category == booking.Category
+                && ((b.FromDate >= booking.FromDate && b.FromDate <= booking.ToDate)
+                || (b.ToDate <= booking.ToDate && b.ToDate >= booking.FromDate)));
+
+            // get total rooms of this type
+            int totalRooms = _context.Rooms.Single(b => b.Category == booking.Category && b.Size == booking.Size).Count;
+
+            // check if more rooms are available of this type
+            var roomsAvailable = bookedRoomsCount < totalRooms;
+
+            if (roomsAvailable)
+            {
+                // send current booking
+                return RedirectToAction("index", "booking", booking);
+            }
+            else
+            {
+                ViewBag.error = "No rooms are available";
+                return View("index");
+            }
         }
+
 
         public IActionResult BookingHistory()
         {

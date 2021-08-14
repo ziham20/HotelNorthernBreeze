@@ -35,7 +35,7 @@
                                 <option value="" selected disabled hidden>Room Category</option>
                                 <option>Standard</option>
                                 <option>Deluxe</option>
-                                <option>Executive suitejn</option>
+                                <option>Executive</option>
                                 <option>Royal suite</option>
                             </select>
                         </div>
@@ -43,18 +43,18 @@
 
                     <input type="hidden" value="" name="userNic" />
 
-                    <div class="col-2">                       
-                            <button type="button" class="btn btn-primary font-weight-bold">Check</button> 
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-primary font-weight-bold">Check</button>
                     </div>
                 </div>
                 @*<div class="row">
                     <div class="col-9"></div>
                     <div class="col-3">
-                        <div class="p-t-32">
-                            <button type="button" class="btn btn-primary font-weight-bold">Check</button>
-                        </div>
+                    <div class="p-t-32">
+                    <button type="button" class="btn btn-primary font-weight-bold">Check</button>
                     </div>
-                </div>*@
+                    </div>
+                    </div>*@
 
             </div>
 
@@ -73,3 +73,11 @@
         uiLibrary: 'bootstrap4'
     });
 </script>
+
+
+@if (ViewBag.error is not null)
+{
+    <script>
+        alert("@ViewBag.error");
+    </script>
+}
