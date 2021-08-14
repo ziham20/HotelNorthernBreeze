@@ -33,21 +33,24 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FromDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ToDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Room.Category)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Room.Size)
-                    </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FromDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ToDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room.Size)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room.Rate)
+                </td>
 
-                </tr>
+            </tr>
             }
         </tbody>
     </table>

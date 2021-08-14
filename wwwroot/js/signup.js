@@ -1,11 +1,14 @@
-﻿// get signup form
-const signUpForm = $("#signup-form");
+﻿
+    var password = document.getElementById("password")
+    , confirm_password = document.getElementById("confirm_password");
 
-// handle form submission
-signUpForm.on("submit", (ev) => {
-    // check passwords match
-    if ($("#password").val() !== $("#confirm-password").val()) {
-        ev.preventDefault();
-        alert("Two passwords do not match");
-    }
-})
+        function validatePassword() {
+            if (password.value != confirm_password.value) {
+        confirm_password.setCustomValidity("Passwords Don't Match");
+            } else {
+        confirm_password.setCustomValidity('');
+            }
+        }
+
+        password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
