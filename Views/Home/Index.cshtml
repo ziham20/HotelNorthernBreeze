@@ -1,4 +1,6 @@
-﻿@{
+﻿@inject HotelNorthernBreeze.Services.AuthService authService
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -42,7 +44,7 @@
                                 <option value="" selected disabled hidden>Room Size</option>
                                 <option>Single</option>
                                 <option>Double</option>
-                                <option>Triple family</option>
+                                <option>Triple</option>
                             </select>
                         </div>
                     </div>
@@ -51,14 +53,13 @@
                             <select class="form-control" id="room-type-select" name="category">
                                 <option value="" selected disabled hidden>Room Category</option>
                                 <option>Standard</option>
-                                <option>Deluxe</option>
                                 <option>Executive</option>
                                 <option>Royal</option>
                             </select>
                         </div>
                     </div>
 
-                    <input type="hidden" value="" name="userNic" />
+                    <input type="hidden" value="@authService.LoggedUser.Nic" name="userNic" />
 
                     <div class="col-2">                       
                             <button type="submit" class="btn btn-primary font-weight-bold">Check</button> 

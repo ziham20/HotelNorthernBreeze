@@ -1,19 +1,36 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@inject HotelNorthernBreeze.Services.AuthService authService
+@inject HotelNorthernBreeze.Data.NBEDBContext context
+
 @{
+    Booking booking = ViewBag.booking;
+    var noOfNight = (booking.ToDate - booking.FromDate).Days + 1;
+    var cost = noOfNight * booking.Room.Rate;
+
+    // reduce discount
+    if (noOfNight >= 5)
+        cost -= cost * 0.25;
+
+    // get total cost of all upcoming bookings
+    var totalCost = context.Bookings.AsEnumerable()
+                                    .Where(b => b.UserNic == booking.UserNic && b.FromDate >= DateTime.Now)
+                                    .Sum(b => b.Room.Rate * ((b.ToDate - b.FromDate).Days + 1));
 }
 
 <div class="book-now-pg">
     <form>
         <div class="card p-5">
-            <label>Number of nights : <span>6</span></label>       
-            <span>25% Discount Applied</span>
-            <label>Total : <span>$234.00</span></label>
-           
+            <label>Number of nights : <span>@noOfNight</span></label>
+
+            @if (noOfNight >= 5)
+            {
+                <span>25% Discount Applied</span>
+            }
+
+            <label>Total : <span>@cost.ToString("0.00")$</span></label>
+
             <div class="clearfix d-flex">
-                <button type="button" class="btn btn-secondary font-weight-bold py-2 mr-2 w-50">Cancel</button>
-                <button class="btn btn-primary font-weight-bold w-50">Book Now</button>
+                <a asp-controller="home" class="btn btn-secondary font-weight-bold py-2 mr-2 w-50">Cancel</a>
+                <button type="submit" class="btn btn-primary font-weight-bold w-50">Book Now</button>
             </div>
         </div>
     </form>

@@ -30,6 +30,6 @@ namespace HotelNorthernBreeze.Models
         public DateTime ToDate { get; set; }
 
         public virtual Room Room { get; set; }
-        public virtual User UserNicNavigation { get; set; }
+        public virtual User User { get; set; }
     }
 }

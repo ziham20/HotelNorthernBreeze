@@ -28,7 +28,7 @@ namespace HotelNorthernBreeze.Data
 
             modelBuilder.Entity<Booking>(entity =>
             {
-                entity.HasKey(e => new { e.Category, e.Size, e.UserNic })
+                entity.HasKey(e => new { e.Category, e.Size, e.UserNic, e.FromDate, e.ToDate })
                     .HasName("Booking_PK");
 
                 entity.ToTable("Booking");
@@ -50,7 +50,7 @@ namespace HotelNorthernBreeze.Data
 
                 entity.Property(e => e.ToDate).HasColumnType("date");
 
-                entity.HasOne(d => d.UserNicNavigation)
+                entity.HasOne(d => d.User)
                     .WithMany(p => p.Bookings)
                     .HasForeignKey(d => d.UserNic)
                     .OnDelete(DeleteBehavior.ClientSetNull)
