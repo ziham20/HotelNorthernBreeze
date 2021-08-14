@@ -10,10 +10,11 @@
     if (noOfNight >= 5)
         cost -= cost * 0.25;
 
-    // get total cost of all upcoming bookings
-    var totalCost = context.Bookings.AsEnumerable()
-                                    .Where(b => b.UserNic == booking.UserNic && b.FromDate >= DateTime.Now)
-                                    .Sum(b => b.Room.Rate * ((b.ToDate - b.FromDate).Days + 1));
+    // get all upcoming bookings
+    var upcomingBookings = context.Bookings.AsEnumerable()
+                                            .Where(b => b.UserNic == booking.UserNic && b.FromDate >= DateTime.Now);
+
+    var totalCost = upcomingBookings.Sum(b => b.Room.Rate * ((b.ToDate - b.FromDate).Days + 1));
 }
 
 <div class="book-now-pg">
@@ -44,10 +45,13 @@
     <div class="up-coming card p-3">
         <div class="col-5">
             <h5>Up Comming bookings</h5>
-            <p>12/03/2021 - 14/03/2021</p>
-            <p>16/04/2021 - 14/04/2021</p>
-            <p>15/07/2021 - 14/07/2021</p>
-            <label>Total : <span>$234.00</span></label>
+
+            @foreach (var upBooking in upcomingBookings)
+            {
+                <p>@upBooking.FromDate.ToString("dd/MM/yyyy") - @upBooking.ToDate.ToString("dd/MM/yyyy")</p>
+            }
+
+            <label>Total : <span>@totalCost.ToString("0.00") $</span></label>
         </div>
     </div>
 
