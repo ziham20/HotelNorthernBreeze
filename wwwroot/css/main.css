@@ -209,6 +209,13 @@ form {
 
 .book-now-pg .card{
     top:200px;
+    margin-bottom:5%;
+
+}
+
+.up-coming .card {
+    width: 300px;
+    top: 185px;
 }
 
     .login-card .card {
@@ -216,6 +223,18 @@ form {
     margin: auto;
     top: 185px;
 }
+
+.discount-coupon {
+    background-color: #04AA6D;
+    width: 350px;
+    height: 200px;
+    border: solid 1px #555;
+    margin-left: 10px;
+    padding: 3px;
+}
+
+
+
 
 .login-card h3 {
     color: #041e4a;
