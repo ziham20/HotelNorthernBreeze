@@ -1,6 +1,8 @@
 using HotelNorthernBreeze.Data;
+using HotelNorthernBreeze.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -29,6 +31,13 @@ namespace HotelNorthernBreeze
 
             // add db context
             services.AddDbContext<NBEDBContext>(o => o.UseSqlServer(Configuration.GetConnectionString("NBEDB")));
+
+            // add session
+            services.AddSession();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            // services
+            services.AddScoped<AuthService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +55,8 @@ namespace HotelNorthernBreeze
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseSession();
 
             app.UseRouting();
 

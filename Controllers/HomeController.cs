@@ -1,5 +1,6 @@
 ﻿using HotelNorthernBreeze.Data;
 using HotelNorthernBreeze.Models;
+using HotelNorthernBreeze.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -13,18 +14,32 @@ namespace HotelNorthernBreeze.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly NBEDBContext _NBEDBContext;
+        private readonly NBEDBContext _context;
+        private readonly AuthService _authService;
 
-        public HomeController(ILogger<HomeController> logger, NBEDBContext nBEDBContext)
+        public HomeController(NBEDBContext context, AuthService authService)
         {
-            _logger = logger;
-            _NBEDBContext = nBEDBContext;
+            _context = context;
+            _authService = authService;
         }
 
+
+        // GET : /home
         public IActionResult Index()
         {
-            return View();
+            // redirect to login if user is not logged in
+            if (!_authService.IsLoggedIn)
+                return Redirect("login");
+
+            else
+                return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult CreateBooking(Booking booking)
+        {
+            return null;
         }
 
         public IActionResult BookingHistory()
@@ -33,7 +48,7 @@ namespace HotelNorthernBreeze.Controllers
         }
         public IActionResult MyBookings()
         {
-            return View(_NBEDBContext.Bookings.Include(b => b.Room).ToList());
+            return View(_context.Bookings.Include(b => b.Room).ToList());
         }
 
         public IActionResult Booking()
@@ -51,5 +66,6 @@ namespace HotelNorthernBreeze.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }
