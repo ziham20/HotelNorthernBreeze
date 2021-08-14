@@ -22,23 +22,23 @@
         </div>   
     </div>
     <div class="home-pg">
-        <form>
+        <form asp-action="CreateBooking">
             <div class="card p-5">
                 <div class="row">
                     <div class="col-2 ">
                         <div class="form-group">
-                            <input id="datepicker" placeholder="Check In" width="150"  required/>
+                            <input id="datepicker" placeholder="Check In" width="150" name="fromDate" required/>
                         </div>
                     </div>
                     <div class="col-2">
                         <div class="form-group">
-                            <input id="datepicker1" placeholder="Check Out" width="150" required/>
+                            <input id="datepicker1" placeholder="Check Out" width="150" name="toDate" required/>
                         </div>
                     </div>
 
                     <div class="col-3">
                         <div class="form-group">
-                            <select class="form-control" id="exampleFormControlSelect1">
+                            <select class="form-control" id="exampleFormControlSelect1" name="size">
                                 <option value="" selected disabled hidden>Room</option>
                                 <option>Single</option>
                                 <option>Double</option>
@@ -48,7 +48,7 @@
                     </div>
                     <div class="col-3">
                         <div class="form-group">
-                            <select class="form-control" id="exampleFormControlSelect1">
+                            <select class="form-control" id="exampleFormControlSelect1" name="category">
                                 <option value="" selected disabled hidden>Room Category</option>
                                 <option>Standard</option>
                                 <option>Deluxe</option>
@@ -57,8 +57,11 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-2">
-                        <button type="button" class="btn btn-primary font-weight-bold">Check</button>
+
+                    <input type="hidden" value="" name="userNic" />
+
+                    <div class="col-2">                       
+                            <button type="button" class="btn btn-primary font-weight-bold">Check</button> 
                     </div>
                 </div>
                 @*<div class="row">

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HotelNorthernBreeze.Data;
 using HotelNorthernBreeze.Models;
+using HotelNorthernBreeze.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HotelNorthernBreeze.Controllers
@@ -12,21 +13,30 @@ namespace HotelNorthernBreeze.Controllers
     {
 
         private readonly NBEDBContext _context;
+        private readonly AuthService _authService;
 
 
-        public LoginController(NBEDBContext context)
+        public LoginController(NBEDBContext context, AuthService authService)
         {
             _context = context;
+            _authService = authService;
         }
 
 
+        // GET : /login
         public IActionResult Index()
         {
-            return View();
+            // return to home if user is already logged in
+            if (_authService.IsLoggedIn)
+                return Redirect("/");
+
+            else
+                return View();
         }
 
 
         [HttpPost]
+        // POST : /login/create
         public IActionResult Create(string nic, string password)
         {
 
@@ -48,8 +58,24 @@ namespace HotelNorthernBreeze.Controllers
             // login user
             else
             {
+                _authService.LoginUser(user);
+                Console.WriteLine(_authService.LoggedUser.FirstName);
                 return RedirectToAction("index", "home");
             }
+
+        }
+
+
+        [HttpPost]
+        // POST : /login/logout
+        public IActionResult LogOut()
+        {
+
+            // logout user
+            _authService.LoginOut();
+
+            // got to login
+            return Redirect("login");
 
         }
 
