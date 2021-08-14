@@ -18,40 +18,49 @@
 }
 
 <div class="book-now-pg">
-    <form asp-action="create">
-        <div class="card p-5">
-            <label>Number of nights : <span>@noOfNight</span></label>
 
-            @if (noOfNight >= 5)
-            {
-                <span>25% Discount Applied</span>
-            }
+    <div class="row">
+        <div class="col-8">
+            <form asp-action="create">
+                <div class="card p-5">
+                    <div class="d-flex">
+                        <label class="pt-2 font-weight-bold">Number of nights : <span>@noOfNight</span></label>
 
-            <label>Total : <span>@cost.ToString("0.00")$</span></label>
+                        @if (noOfNight >= 5)
+                        {
+                            <span class="discount-coupon">25% Off</span>
+                        }
+                    </div>
+                    <label class="py-2 f-s-20 font-weight-bold">Total : <span>@cost.ToString("0.00")$</span></label>
 
-            <input type="hidden" value="@booking.Category" name="category" />
-            <input type="hidden" value="@booking.Size" name="size" />
-            <input type="hidden" value="@booking.FromDate" name="fromDate" />
-            <input type="hidden" value="@booking.ToDate" name="toDate" />
-            <input type="hidden" value="@booking.UserNic" name="userNic" />
+                    <input type="hidden" value="@booking.Category" name="category" />
+                    <input type="hidden" value="@booking.Size" name="size" />
+                    <input type="hidden" value="@booking.FromDate" name="fromDate" />
+                    <input type="hidden" value="@booking.ToDate" name="toDate" />
+                    <input type="hidden" value="@booking.UserNic" name="userNic" />
 
-            <div class="clearfix d-flex">
-                <a asp-controller="home" class="btn btn-secondary font-weight-bold py-2 mr-2 w-50">Cancel</a>
-                <button type="submit" class="btn btn-primary font-weight-bold w-50">Book Now</button>
-            </div>
+                    <div class="clearfix d-flex mt-3">
+                        <a asp-controller="home" class="btn btn-secondary font-weight-bold py-2 mr-2 w-50">Cancel</a>
+                        <button type="submit" class="btn btn-primary font-weight-bold w-50">Book Now</button>
+                    </div>
+                </div>
+
+
+            </form>
         </div>
-    </form>
+        <div class="col-4">
 
-    <div class="up-coming card p-3">
-        <div class="col-5">
-            <h5>Up Comming bookings</h5>
 
-            @foreach (var upBooking in upcomingBookings)
-            {
-                <p>@upBooking.FromDate.ToString("dd/MM/yyyy") - @upBooking.ToDate.ToString("dd/MM/yyyy")</p>
-            }
+            <div class="up-coming card p-3">
+                    <h5 class="mb-3">Up Comming Bookings</h5>                 
 
-            <label>Total : <span>@totalCost.ToString("0.00") $</span></label>
+                    @foreach (var upBooking in upcomingBookings)
+                    {
+                        <p>@upBooking.FromDate.ToString("dd/MM/yyyy") - @upBooking.ToDate.ToString("dd/MM/yyyy")</p>
+                    }
+
+                    <label class="py-2 f-s-20 font-weight-bold">Total : <span>@totalCost.ToString("0.00") $</span></label>
+            </div>
         </div>
     </div>
 

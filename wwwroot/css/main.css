@@ -203,19 +203,22 @@ form {
 }
 
 .book-now-pg {
-    width: 700px;
+    width: 1000px;
     margin: auto;
 }
 
 .book-now-pg .card{
     top:200px;
-    margin-bottom:5%;
 
 }
 
-.up-coming .card {
-    width: 300px;
-    top: 185px;
+.up-coming {
+    width: 400px;
+    min-height:248px;
+}
+
+.up-coming p{
+    margin-bottom:2px;
 }
 
     .login-card .card {
@@ -225,12 +228,12 @@ form {
 }
 
 .discount-coupon {
+    border-radius: 3px;
     background-color: #04AA6D;
-    width: 350px;
-    height: 200px;
-    border: solid 1px #555;
-    margin-left: 10px;
-    padding: 3px;
+    padding: 2px 10px;
+    color: white;
+    margin: auto;
+    margin-left: 20px;
 }
 
 
@@ -345,3 +348,6 @@ form {
 
 }
 
+.f-s-20{
+    font-size:20px;
+}
