@@ -19,8 +19,6 @@
         <form asp-action="Create" asp-method id="signup-form">
             <div class="card p-5">
                 <h1>Sign Up</h1>
-                <p>Please fill in this form to create an account.</p>
-                <hr>
 
                 <input type="text" placeholder="First Name" name="firstName"
                              required pattern="[a-z]{1,15}" 
@@ -30,13 +28,14 @@
                              required pattern="[a-z]{1,15}" 
                              title="Last Name cannot have non characters">
 
-                <input type="email" placeholder="Email" name="email" required>
+                <input type="email" placeholder="Email" name="email" class="cus-input"
+                             required>
 
                 <input type="text" placeholder="NIC" name="nic" 
                              required pattern="[^()/><\][\\\x22,;|]+"
                              title="NIC cannot have Special Characters!">
 
-                <input type="number" placeholder="Contact Number" name="contactNumber" 
+                <input type="number" placeholder="Contact Number" name="contactNumber" class="cus-input"
                              required pattern="[0-9]{10}" 
                              title="Please enter valid phone number">
 
