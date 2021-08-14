@@ -169,9 +169,9 @@ form {
     margin: 10rem 2rem;
 }
 
-.login-card {
+./*login-card {
     margin: 16rem 45rem;
-}
+}*/
 
     .login-card h3 {
         color: #1b6dbf;
@@ -193,6 +193,6 @@ form {
         text-align: center;
     }
 
-.signup-card {
+/*.signup-card {
     margin: 4rem 40rem;
-}
+}*/

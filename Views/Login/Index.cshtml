@@ -15,11 +15,11 @@
 </head>
 <body>
     <div class="login-card">
-        <form action="" method="post">
+        <form asp-action="Create">
             <div class="card p-5">
                 <h3>Hotel Northern Breeze</h3>
-                <input type="text" placeholder="Username" name="uname" required>
-                <input type="password" placeholder="Password" name="psw" required>
+                <input type="text" placeholder="NIC" name="nic" required>
+                <input type="password" placeholder="Password" name="password" required>
 
                 <button class="btn btn-primary font-weight-bold py-2" type="submit">Login</button>
 
@@ -30,6 +30,13 @@
             </div>
         </form>
     </div>
+
+    @if (ViewBag.error is not null)
+    {
+        <script>
+            alert("@ViewBag.error");
+        </script>
+    }
 
 </body>
 
