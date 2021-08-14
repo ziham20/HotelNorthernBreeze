@@ -16,32 +16,31 @@
 <body>
     <header>
 
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 navbar-inverse">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand logo-title" asp-area="" asp-controller="Home" asp-action="Index">Hotel Northern Breeze</a>
                 </div>
-      
-                <ul class="nav navbar-nav navbar-righr">               
-                    <li class="nav-item">
+
+                <ul class="nav navbar-nav navbar-righr">
+                    <li class="nav-item ne">
                         <a class="nav-link text-dark" asp-area="" asp-controller="home" asp-action="MyBookings">My Bookings</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="login" asp-action="index">Login</a>
+                    <li class="nav-item  login-btn">
+                        <a class="nav-link" asp-area="" asp-controller="login" asp-action="index">Login</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="signup" asp-action="index">Signup</a>
+                    <li class="nav-item  login-btn">
+                        <a class="nav-link" asp-area="" asp-controller="home" asp-action="index">Logout</a>
                     </li>
+
                 </ul>
             </div>
         </nav>
 
     </header>
-    <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">

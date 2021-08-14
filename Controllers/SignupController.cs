@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HotelNorthernBreeze.Data;
+﻿using HotelNorthernBreeze.Data;
 using HotelNorthernBreeze.Models;
 using HotelNorthernBreeze.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace HotelNorthernBreeze.Controllers
 {
@@ -40,7 +37,6 @@ namespace HotelNorthernBreeze.Controllers
         [HttpPost]
         public IActionResult Create(User user)
         {
-
             // check if a user with this NIC is already there
             if (_context.Users.Any(u => u.Nic == user.Nic))
             {
@@ -54,7 +50,6 @@ namespace HotelNorthernBreeze.Controllers
                 ViewBag.error = $"email {user.Email} already has an account";
                 return View("index");
             }
-
 
             // add user
             else

@@ -3,12 +3,8 @@ using HotelNorthernBreeze.Models;
 using HotelNorthernBreeze.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace HotelNorthernBreeze.Controllers
 {
@@ -76,19 +72,13 @@ namespace HotelNorthernBreeze.Controllers
         }
         public IActionResult MyBookings()
         {
-            return View(_context.Bookings.Include(b => b.Room).ToList());
+            return View(_context.Bookings.Include(b => b.Room).Where(u => u.UserNic == _authService.LoggedUser.Nic).ToList());
         }
 
         public IActionResult Booking()
         {
             return View();
         }
-
-
-
-
-
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

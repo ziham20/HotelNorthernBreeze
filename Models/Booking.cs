@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -9,7 +8,6 @@ namespace HotelNorthernBreeze.Models
 {
     public partial class Booking
     {
-
         [Required]
         [DataType(DataType.Text)]
         public string Category { get; set; }
@@ -23,11 +21,11 @@ namespace HotelNorthernBreeze.Models
         [RegularExpression("^([0-9]{9}[x|X|v|V]|[0-9]{12})$", ErrorMessage = "Invalid NIC")]
         public string UserNic { get; set; }
 
-        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [DisplayName("Check-in")]
         public DateTime FromDate { get; set; }
 
-        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [DisplayName("Check-out")]
         public DateTime ToDate { get; set; }
 

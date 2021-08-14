@@ -17,9 +17,15 @@
     <div class="login-card">
         <form asp-action="Create">
             <div class="card p-5">
+
                 <h3>Hotel Northern Breeze</h3>
-                <input type="text" placeholder="NIC" name="nic" required>
-                <input type="password" placeholder="Password" name="password" required>
+
+                <input type="text" placeholder="NIC" name="nic"
+                       required pattern="[^()/><\][\\\x22,;|]+"
+                       title="NIC cannot have Special Characters!">
+
+                <input type="password" placeholder="Password" name="password"
+                       required>
 
                 <button class="btn btn-primary font-weight-bold py-2" type="submit">Login</button>
 

@@ -19,22 +19,32 @@
         <form asp-action="Create" asp-method id="signup-form">
             <div class="card p-5">
                 <h1>Sign Up</h1>
-                <p>Please fill in this form to create an account.</p>
-                <hr>
 
-                <input type="text" placeholder="First Name" name="firstName" required>
+                <input type="text" placeholder="First Name" name="firstName"
+                             required pattern="[a-z]{1,15}" 
+                             title="First Name cannot have non characters">
 
-                <input type="text" placeholder="Last Name" name="lastName" required>
+                <input type="text" placeholder="Last Name" name="lastName"
+                             required pattern="[a-z]{1,15}" 
+                             title="Last Name cannot have non characters">
 
-                <input type="text" placeholder="Email" name="email" required>
+                <input type="email" placeholder="Email" name="email" class="cus-input"
+                             required>
 
-                <input type="text" placeholder="NIC" name="nic" required>
+                <input type="text" placeholder="NIC" name="nic" 
+                             required pattern="[^()/><\][\\\x22,;|]+"
+                             title="NIC cannot have Special Characters!">
 
-                <input type="text" placeholder="telephone" name="telephone" required>
+                <input type="number" placeholder="Contact Number" name="contactNumber" class="cus-input"
+                             required pattern="[0-9]{10}" 
+                             title="Please enter valid phone number">
 
-                <input type="password" placeholder="Password" name="password" id="password" required>
+                <input type="password" placeholder="Password" name="password" id="password"
+                             required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@@$!%*?&])[A-Za-z\d@@$!%*?&]{8,}$"
+                             title="Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character">
 
-                <input type="password" placeholder="Confirm Password" name="confirm-password" id="confirm-password" required>
+                <input type="password" placeholder="Confirm Password" name="confirm-password" id="confirm_password" 
+                             required>
 
                 <div class="clearfix d-flex">
                     <button type="button" class="btn btn-secondary font-weight-bold py-2 mr-2 w-50">Cancel</button>
@@ -48,17 +58,33 @@
                 </p>
             </div>
         </form>
-        </div>
+    </div>
 
     @if (ViewBag.error is not null)
     {
         <script>
             alert("@ViewBag.error");
+
         </script>
     }
 
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/js/signup.js"></script>
+    <script>
+        var password = document.getElementById("password")
+            , confirm_password = document.getElementById("confirm_password");
+
+        function validatePassword() {
+            if (password.value != confirm_password.value) {
+                confirm_password.setCustomValidity("Passwords Don't Match");
+            } else {
+                confirm_password.setCustomValidity('');
+            }
+        }
+
+        password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
+    </script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/js/signup.js"></script>
 </body>
 </html>
 
