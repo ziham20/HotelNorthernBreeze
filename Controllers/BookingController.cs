@@ -49,6 +49,7 @@ namespace HotelNorthernBreeze.Controllers
 
             // add booking to database
             _context.Bookings.Add(booking);
+            _context.SaveChanges();
 
             // go home
             ViewBag.booking = booking;

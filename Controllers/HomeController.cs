@@ -81,6 +81,7 @@ namespace HotelNorthernBreeze.Controllers
         }
         
 
+        // GET : /home/mybookings
         public IActionResult MyBookings()
         {
             return View(_context.Bookings.Include(b => b.Room)
