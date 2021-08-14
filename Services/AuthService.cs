@@ -14,12 +14,9 @@ namespace HotelNorthernBreeze.Services
     /// </summary>
     public class AuthService
     {
-
         private const string LOGGED_USER_KEY = "__logged_user__";
-
         private readonly ISession _session;
         private readonly NBEDBContext _context;
-
 
         public AuthService(IHttpContextAccessor httpContextAccessor, NBEDBContext context)
         {
@@ -27,12 +24,10 @@ namespace HotelNorthernBreeze.Services
             _context = context;
         }
 
-
         /// <summary>
         /// Returns true if a user is logged in
         /// </summary>
         public bool IsLoggedIn => _session.TryGetValue(LOGGED_USER_KEY, out _);
-
 
         /// <summary>
         /// Get logged in user
@@ -47,7 +42,6 @@ namespace HotelNorthernBreeze.Services
             }
         }
 
-
         /// <summary>
         /// Login a user
         /// </summary>
@@ -55,7 +49,6 @@ namespace HotelNorthernBreeze.Services
         {
             _session.SetString(LOGGED_USER_KEY, user.Nic);
         }
-
 
         /// <summary>
         /// Logout the currently logged in user
