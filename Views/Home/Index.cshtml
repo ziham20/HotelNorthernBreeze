@@ -4,66 +4,58 @@
 
 <div id="sandbox-container" class="text-center">
 
-
-    <!--<form action="">-->
-    @*<label for="From">From:</label>
-        <input id="datepicker" width="276" />*@
-
-    <!--<label for="To">To:</label>
-        <input id="datepicker" width="276" />
-
-        <div class="form-group">
-            <select class="form-control" id="exampleFormControlSelect1">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
-        </div>
-        <input type="submit">
-
-    </form>-->
-
     <div class="book-now-pg">
         <form>
-            <div class="card">
-                <div class="row p-5 ">
-                    <div class="col-4">
+            <div class="card p-5">
+                <div class="row">
+                    <div class="col-2 ">
                         <div class="form-group">
-                            <label class="float-left" for="From">Check-in:</label>
-                            <input id="datepicker" width="276" />
+                            <input id="datepicker" placeholder="Check In" width="150" />
                         </div>
                     </div>
-                    <div class="col-4">
+                    <div class="col-2">
                         <div class="form-group">
-                            <label class="float-left" for="To">Check-out:</label>
-                            <input id="datepicker1" width="276" />
+                            <input id="datepicker1" placeholder="Check Out" width="150" />
                         </div>
                     </div>
 
+                    <div class="col-3">
+                        <div class="form-group">
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option value="" selected disabled hidden>Room</option>
+                                <option>Single</option>
+                                <option>Double</option>
+                                <option>Triple family</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group">
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option value="" selected disabled hidden>Room Category</option>
+                                <option>Standard</option>
+                                <option>Deluxe</option>
+                                <option>Executive suitejn</option>
+                                <option>Royal suite</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-2">                       
+                            <button type="button" class="btn btn-primary font-weight-bold">Check</button> 
+                    </div>
                 </div>
+                @*<div class="row">
+                    <div class="col-9"></div>
+                    <div class="col-3">
+                        <div class="p-t-32">
+                            <button type="button" class="btn btn-primary font-weight-bold">Check</button>
+                        </div>
+                    </div>
+                </div>*@
 
-
-                <label>Room Size :</label>
-                <select class="form-control" id="exampleFormControlSelect1">
-                    <option>Single</option>
-                    <option>Double</option>
-                    <option>Triple family</option>
-                </select>
-                <br>
-                <label>Room Category :</label>
-                <select class="form-control" id="exampleFormControlSelect1">
-                    <option>Standard</option>
-                    <option>Deluxe</option>
-                    <option>Executive suite</option>
-                    <option>Royal suite</option>
-                </select>
             </div>
 
-            <div class="p-t-32">
-                <button type="button" class="btn btn-primary font-weight-bold">Check</button>
-            </div>
+
         </form>
     </div>
 
