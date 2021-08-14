@@ -28,6 +28,12 @@
 
             <label>Total : <span>@cost.ToString("0.00")$</span></label>
 
+            <input type="hidden" value="@booking.Category" name="category" />
+            <input type="hidden" value="@booking.Size" name="size" />
+            <input type="hidden" value="@booking.FromDate" name="fromDate" />
+            <input type="hidden" value="@booking.ToDate" name="toDate" />
+            <input type="hidden" value="@booking.UserNic" name="userNic" />
+
             <div class="clearfix d-flex">
                 <a asp-controller="home" class="btn btn-secondary font-weight-bold py-2 mr-2 w-50">Cancel</a>
                 <button type="submit" class="btn btn-primary font-weight-bold w-50">Book Now</button>

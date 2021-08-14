@@ -47,13 +47,12 @@ namespace HotelNorthernBreeze.Controllers
             if (!_authService.IsLoggedIn)
                 return Redirect("login");
 
-            // get room and user details
-            booking.Room = _context.Rooms.Single(r => r.Size == booking.Size && r.Category == booking.Category);
-            booking.User = _authService.LoggedUser;
+            // add booking to database
+            _context.Bookings.Add(booking);
 
-            // send booking details to view
+            // go home
             ViewBag.booking = booking;
-            return View();
+            return RedirectToAction("index", "home");
         }
 
     }

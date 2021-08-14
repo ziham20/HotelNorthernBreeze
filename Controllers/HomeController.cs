@@ -32,6 +32,21 @@ namespace HotelNorthernBreeze.Controllers
         }
 
 
+        // GET : /home
+        public IActionResult BookingCreated()
+        {
+            // redirect to login if user is not logged in
+            if (!_authService.IsLoggedIn)
+                return Redirect("login");
+
+            else
+            {
+                ViewBag.message = "Booking was created";
+                return View("index");
+            }
+        }
+
+
         // POST : /home/createbooking
         [HttpPost]
         public IActionResult CreateBooking(Booking booking)
@@ -64,21 +79,16 @@ namespace HotelNorthernBreeze.Controllers
                 return View("index");
             }
         }
+        
 
-
-        public IActionResult BookingHistory()
-        {
-            return View();
-        }
         public IActionResult MyBookings()
         {
-            return View(_context.Bookings.Include(b => b.Room).Where(u => u.UserNic == _authService.LoggedUser.Nic).ToList());
+            return View(_context.Bookings.Include(b => b.Room)
+                                         .Where(u => u.UserNic == _authService.LoggedUser.Nic)
+                                         .ToList());
         }
 
-        public IActionResult Booking()
-        {
-            return View();
-        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
