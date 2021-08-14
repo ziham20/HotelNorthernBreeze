@@ -42,7 +42,7 @@ namespace HotelNorthernBreeze.Controllers
 
             // check if a user with this NIC exists
             var user = _context.Users.SingleOrDefault(u => u.Nic == nic);
-            if(user is null)
+            if (user is null)
             {
                 ViewBag.error = $"NIC {nic} does not has an account";
                 return View("index");
@@ -66,16 +66,15 @@ namespace HotelNorthernBreeze.Controllers
         }
 
 
-        [HttpPost]
-        // POST : /login/logout
+        // GET : /login/logout
         public IActionResult LogOut()
         {
-
-            // logout user
-            _authService.LoginOut();
+            // if logged in, log out
+            if (_authService.IsLoggedIn)
+                _authService.LoginOut();
 
             // got to login
-            return Redirect("login");
+            return RedirectToAction("index", "login");
 
         }
 

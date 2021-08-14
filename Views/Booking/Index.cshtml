@@ -1,21 +1,43 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@inject HotelNorthernBreeze.Services.AuthService authService
+@inject HotelNorthernBreeze.Data.NBEDBContext context
+
 @{
+    Booking booking = ViewBag.booking;
+    var noOfNight = (booking.ToDate - booking.FromDate).Days + 1;
+    var cost = noOfNight * booking.Room.Rate;
+
+    // reduce discount
+    if (noOfNight >= 5)
+        cost -= cost * 0.25;
+
+    // get all upcoming bookings
+    var upcomingBookings = context.Bookings.AsEnumerable()
+                                            .Where(b => b.UserNic == booking.UserNic && b.FromDate >= DateTime.Now);
+
+    var totalCost = upcomingBookings.Sum(b => b.Room.Rate * ((b.ToDate - b.FromDate).Days + 1));
 }
 
 <div class="book-now-pg">
-    <form>
-        <div class=".booking card p-3">
-            <div class="col-7 ">
-                <label>Number of nights : <span>6</span></label>
-                <span class="discount-coupon">25% Off</span>
-                <br>
-                <label>Price : <span>$84.00</span></label>
-                <div class="clearfix d-flex">
-                    <button type="button" class="btn btn-secondary font-weight-bold py-2 mr-2 w-50">Cancel</button>
-                    <button class="btn btn-primary font-weight-bold w-50">Book Now</button>
-                </div>
+    <form asp-action="create">
+        <div class="card p-5">
+            <label>Number of nights : <span>@noOfNight</span></label>
+
+            @if (noOfNight >= 5)
+            {
+                <span>25% Discount Applied</span>
+            }
+
+            <label>Total : <span>@cost.ToString("0.00")$</span></label>
+
+            <input type="hidden" value="@booking.Category" name="category" />
+            <input type="hidden" value="@booking.Size" name="size" />
+            <input type="hidden" value="@booking.FromDate" name="fromDate" />
+            <input type="hidden" value="@booking.ToDate" name="toDate" />
+            <input type="hidden" value="@booking.UserNic" name="userNic" />
+
+            <div class="clearfix d-flex">
+                <a asp-controller="home" class="btn btn-secondary font-weight-bold py-2 mr-2 w-50">Cancel</a>
+                <button type="submit" class="btn btn-primary font-weight-bold w-50">Book Now</button>
             </div>
         </div>
     </form>
@@ -23,10 +45,13 @@
     <div class="up-coming card p-3">
         <div class="col-5">
             <h5>Up Comming bookings</h5>
-            <p>12/03/2021 - 14/03/2021</p>
-            <p>16/04/2021 - 14/04/2021</p>
-            <p>15/07/2021 - 14/07/2021</p>
-            <label>Total : <span>$234.00</span></label>
+
+            @foreach (var upBooking in upcomingBookings)
+            {
+                <p>@upBooking.FromDate.ToString("dd/MM/yyyy") - @upBooking.ToDate.ToString("dd/MM/yyyy")</p>
+            }
+
+            <label>Total : <span>@totalCost.ToString("0.00") $</span></label>
         </div>
     </div>
 

@@ -1,4 +1,6 @@
-﻿@{
+﻿@inject HotelNorthernBreeze.Services.AuthService authService
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -14,54 +16,53 @@
                 <img class="d-block w-100" height="875" src="~/imgs/1.jpg" alt="First slide">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" height="875" src="~/imgs/2.jpg"  alt="Second slide">
+                <img class="d-block w-100" height="875" src="~/imgs/2.jpg" alt="Second slide">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" height="875" src="~/imgs/3.jpg"  alt="Third slide">
+                <img class="d-block w-100" height="875" src="~/imgs/3.jpg" alt="Third slide">
             </div>
-        </div>   
+        </div>
     </div>
     <div class="home-pg">
-        <form asp-action="CreateBooking">
+        <form asp-action="CreateBooking" id="booking-form">
             <div class="card p-5">
                 <div class="row">
                     <div class="col-2 ">
                         <div class="form-group">
-                            <input id="datepicker" placeholder="Check In" width="150" data-date-format="dd/mm/yyyy" name="fromDate" required/>
+                            <input id="datepicker" placeholder="Check In" width="150" data-date-format="dd/mm/yyyy" name="fromDate" required />
                         </div>
                     </div>
                     <div class="col-2">
                         <div class="form-group">
-                            <input id="datepicker1" placeholder="Check Out" width="150" data-date-format="dd/mm/yyyy" name="toDate" required/>
+                            <input id="datepicker1" placeholder="Check Out" width="150" data-date-format="dd/mm/yyyy" name="toDate" required />
                         </div>
                     </div>
 
                     <div class="col-3">
                         <div class="form-group">
-                            <select class="form-control" id="exampleFormControlSelect1" name="size">
-                                <option value="" selected disabled hidden>Room</option>
+                            <select class="form-control" id="room-size-select" name="size">
+                                <option value="" selected disabled hidden>Room Size</option>
                                 <option>Single</option>
                                 <option>Double</option>
-                                <option>Triple family</option>
+                                <option>Triple</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-3">
                         <div class="form-group">
-                            <select class="form-control" id="exampleFormControlSelect1" name="category">
+                            <select class="form-control" id="room-type-select" name="category">
                                 <option value="" selected disabled hidden>Room Category</option>
                                 <option>Standard</option>
-                                <option>Deluxe</option>
-                                <option>Executive suitejn</option>
-                                <option>Royal suite</option>
+                                <option>Executive</option>
+                                <option>Royal</option>
                             </select>
                         </div>
                     </div>
 
-                    <input type="hidden" value="" name="userNic" />
+                    <input type="hidden" value="@authService.LoggedUser.Nic" name="userNic" />
 
-                    <div class="col-2">                       
-                            <button type="submit" class="btn btn-primary font-weight-bold">Check</button> 
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-primary font-weight-bold">Check</button>
                     </div>
                 </div>
             </div>
@@ -70,17 +71,18 @@
 
 </div>
 
-<script>
 
-    $('#datepicker').datepicker({
-        format: 'dd/mm/yyyy',
-        startDate: '-3d',
-        uiLibrary: 'bootstrap4'
-    });
+@if (ViewBag.error is not null)
+{
+    <script>
+        alert("@ViewBag.error");
+    </script>
+}
+else if (ViewBag.message is not null)
+{
+    <script>
+        alert("@ViewBag.message");
+    </script>
+}
 
-    $('#datepicker1').datepicker({
-        format: 'dd/mm/yyyy',
-        startDate: '-3d',
-        uiLibrary: 'bootstrap4'
-    });
-</script>
+<script src="~/js/my-bookings.js"></script>

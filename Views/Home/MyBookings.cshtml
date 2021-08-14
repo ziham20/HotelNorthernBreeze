@@ -33,25 +33,29 @@
         <tbody>
             @foreach (var item in Model)
             {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FromDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ToDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Room.Category)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Room.Size)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Room.Rate)
-                </td>
+                <tr>
+                    <td>
+                        @item.FromDate.ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                        @item.ToDate.ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                        @item.Room.Category
+                    </td>
+                    <td>
+                        @item.Room.Size
+                    </td>
+                    <td>
+                        @{
+                            var noOfNights = (item.ToDate - item.FromDate).Days + 1;
+                            var cost = noOfNights * item.Room.Rate;
+                        }
+                        @cost.ToString("0.00") $
+                    </td>
 
             </tr>
             }
         </tbody>
     </table>
-    </div>
+</div>
