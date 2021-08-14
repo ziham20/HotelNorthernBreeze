@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 #nullable disable
@@ -23,6 +24,7 @@ namespace HotelNorthernBreeze.Models
 
         [Required]
         [DataType(DataType.Currency)]
+        [DisplayName("Price")]
         public double Rate { get; set; }
 
         [Required]
