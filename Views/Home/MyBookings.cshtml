@@ -50,11 +50,15 @@
                         @{
                             var noOfNights = (item.ToDate - item.FromDate).Days + 1;
                             var cost = noOfNights * item.Room.Rate;
+
+                            // add discount
+                            if (noOfNights >= 5)
+                                cost -= cost * 0.25;
                         }
                         @cost.ToString("0.00") $
                     </td>
 
-            </tr>
+                </tr>
             }
         </tbody>
     </table>

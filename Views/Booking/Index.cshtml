@@ -1,4 +1,5 @@
-﻿@inject HotelNorthernBreeze.Services.AuthService authService
+﻿@using HotelNorthernBreeze.Models
+@inject HotelNorthernBreeze.Services.AuthService authService
 @inject HotelNorthernBreeze.Data.NBEDBContext context
 
 @{
@@ -12,9 +13,21 @@
 
     // get all upcoming bookings
     var upcomingBookings = context.Bookings.AsEnumerable()
-                                            .Where(b => b.UserNic == booking.UserNic && b.FromDate >= DateTime.Now);
+                                            .Where(b => b.UserNic == booking.UserNic && b.FromDate >= DateTime.Now)
+                                            .ToList();
 
-    var totalCost = upcomingBookings.Sum(b => b.Room.Rate * ((b.ToDate - b.FromDate).Days + 1));
+    // sum cost of all nights
+    var totalCost = upcomingBookings.Sum(b =>
+    {
+        var totalNights = (b.ToDate - b.FromDate).Days + 1;
+        var cost = b.Room.Rate * totalNights;
+
+        // check and add discounr
+        if (totalNights >= 5)
+            cost -= cost * 0.25;
+
+        return cost;
+    });
 }
 
 <div class="book-now-pg">
@@ -52,14 +65,14 @@
 
 
             <div class="up-coming card p-3">
-                    <h5 class="mb-3">Up Comming Bookings</h5>                 
+                <h5 class="mb-3">Up Comming Bookings</h5>
 
-                    @foreach (var upBooking in upcomingBookings)
-                    {
-                        <p>@upBooking.FromDate.ToString("dd/MM/yyyy") - @upBooking.ToDate.ToString("dd/MM/yyyy")</p>
-                    }
+                @foreach (var upBooking in upcomingBookings)
+                {
+                    <p>@upBooking.FromDate.ToString("dd/MM/yyyy") - @upBooking.ToDate.ToString("dd/MM/yyyy")</p>
+                }
 
-                    <label class="py-2 f-s-20 font-weight-bold">Total : <span>@totalCost.ToString("0.00") $</span></label>
+                <label class="py-2 f-s-20 font-weight-bold">Total : <span>@totalCost.ToString("0.00") $</span></label>
             </div>
         </div>
     </div>
